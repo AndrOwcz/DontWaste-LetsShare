@@ -7,10 +7,11 @@
 # INSERT INTO `charity-donation`.institutions (description, name)
 # VALUES ('Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania.', 'Fundacja “Bez domu”');
 #
-# INSERT INTO `charity-donation`.categories (name) VALUE ('ubrania');
-# INSERT INTO `charity-donation`.categories (name) VALUE ('jedzenie');
-# INSERT INTO `charity-donation`.categories (name) VALUE ('sprzęt elektroniczny');
-# INSERT INTO `charity-donation`.categories (name) VALUE ('meble');
+# INSERT INTO `charity-donation`.categories (name) VALUE ('ubrania, które nadają się do ponownego użycia');
+# INSERT INTO `charity-donation`.categories (name) VALUE ('ubrania, do wyrzucenia');
+# INSERT INTO `charity-donation`.categories (name) VALUE ('zabawki');
+# INSERT INTO `charity-donation`.categories (name) VALUE ('książki');
+# INSERT INTO `charity-donation`.categories (name) VALUE ('inne');
 #
 # INSERT INTO `charity-donation`.donations (city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code,
 #                                           institution_entity_id)
