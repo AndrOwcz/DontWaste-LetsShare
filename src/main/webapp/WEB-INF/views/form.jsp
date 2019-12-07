@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="${pageContext.request.contextPath}/resources/css/style.css"/>"/>
 </head>
 <body>
 
@@ -22,12 +22,13 @@
 <%--            </ul>--%>
 <%--          </li>--%>
 <%--        </ul>--%>
-<%@ include file="../../../WEB-INF/views/header.jsp" %>
+<%@ include file="header.jsp" %>
 
 <div class="slogan container container--90">
     <div class="slogan--item">
         <h1>
             Oddaj rzeczy, których już nie chcesz<br/>
+
             <span class="uppercase">potrzebującym</span>
         </h1>
 
@@ -261,8 +262,9 @@
     </div>
 </section>
 
-<%@ include file="../../../WEB-INF/views/footer.jsp" %>
+<%@ include file="footer.jsp" %>
 
-<script src="js/app.js"></script>
+<script src="<c:url value="resources/js/app.js" />"></script>
+
 </body>
 </html>

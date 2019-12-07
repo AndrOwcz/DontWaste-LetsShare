@@ -4,18 +4,19 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.category.CategoryDto;
 import pl.coderslab.charity.category.CategoryRepository;
 import pl.coderslab.charity.institution.InstitutionDto;
 import pl.coderslab.charity.institution.InstitutionEntity;
 import pl.coderslab.charity.institution.InstitutionRepository;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
+@SessionAttributes("donation")
+@RequestMapping("/donation")
 public class DonationController {
 
     private final DonationRepository donationRepository;
@@ -33,13 +34,21 @@ public class DonationController {
     @GetMapping("/add")
     public String addDonation(Model model) {
         model.addAttribute("donation", new DonationDto());
-        return "form";
+        return "formStep1";
+    }
+
+    @GetMapping("/addStep2")
+    public String addDonationStep2(@ModelAttribute DonationDto donationDto, Model model, HttpSession session) {
+        DonationDto donationSession = (DonationDto) session.getAttribute("donation");
+        donationSession.setCategories(donationDto.getCategories());
+        model.addAttribute("donation", donationSession);
+        return "formStep2";
     }
 
     @PostMapping("/add")
     public String processFormAdd() {
 
-        return "redirect:/";
+        return "form-confirmation";
     }
 
 

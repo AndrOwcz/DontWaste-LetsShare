@@ -20,7 +20,7 @@
 <%--            </ul>--%>
 <%--          </li>--%>
 <%--        </ul>--%>
-        <%@ include file="../../../WEB-INF/views/header.jsp" %>
+        <%@ include file="WEB-INF/views/header.jsp" %>
 
       <div class="slogan container container--90">
           <h2>
@@ -30,8 +30,8 @@
       </div>
     </header>
 
-<%@ include file="../../../WEB-INF/views/footer.jsp" %>
+<%@ include file="WEB-INF/views/footer.jsp" %>
 
-<script src="../../../resources/js/app.js"></script>
+<script src="js/app.js"></script>
   </body>
 </html>

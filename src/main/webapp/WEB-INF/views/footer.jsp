@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link href='<c:url value="../../resources/css/style.css"/>' rel="stylesheet" type="text/css">
+    <link href='<c:url value="${pageContext.request.contextPath}/resources/css/style.css"/>' rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -23,8 +23,8 @@
     <div class="bottom-line">
         <span class="bottom-line--copy">Copyright &copy; 2019</span>
         <div class="bottom-line--icons">
-            <a href="#" class="btn btn--small"><img src="<c:url value="../../resources/images/icon-facebook.svg"/>"/></a>
-            <a href="#" class="btn btn--small"><img src="<c:url value="../../resources/images/icon-instagram.svg"/>"/></a>
+            <a href="#" class="btn btn--small"><img src="<c:url value="${pageContext.request.contextPath}/resources/images/icon-facebook.svg"/>"/></a>
+            <a href="#" class="btn btn--small"><img src="<c:url value="${pageContext.request.contextPath}/resources/images/icon-instagram.svg"/>"/></a>
         </div>
     </div>
 </footer>
