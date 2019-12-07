@@ -17,7 +17,6 @@ import pl.coderslab.charity.institution.InstitutionRepository;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @SessionAttributes("donation")
@@ -100,9 +99,18 @@ public class DonationController {
     }
 
 
+    @PostMapping("/addConfirm")
+    public String processFormAdd(@ModelAttribute DonationDto donationDto, HttpSession session) {
+        DonationDto donation = (DonationDto) session.getAttribute("donation");
 
-    @PostMapping("/add")
-    public String processFormAdd() {
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
+
+        DonationEntity donationEntity = modelMapper.map(donation, DonationEntity.class);
+        donationEntity.setCategories(modelMapper.map(donation.getCategoriesDto(), new TypeToken<List<CategoryEntity>>() {
+        }.getType()));
+        donationEntity.setInstitutionEntity(modelMapper.map(donation.getInstitutionDto(), InstitutionEntity.class));
+
+        donationRepository.save(donationEntity);
 
         return "form-confirmation";
     }
