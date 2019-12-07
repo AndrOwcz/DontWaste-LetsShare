@@ -121,9 +121,11 @@
             <div data-step="3">
                 <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
+            <form:form method="get" modelAttribute="donation" action="/donation/addStep4">
+
                 <div class="form-group form-group--checkbox">
                     <label>
-                        <input type="radio" name="organization" value="old"/>
+                        <form:radiobutton path="institution" value="${answer.id}"/>
                         <span class="checkbox radio"></span>
                         <span class="description">
                   <div class="title">Fundacja “Bez domu”</div>
@@ -137,7 +139,7 @@
 
                 <div class="form-group form-group--checkbox">
                     <label>
-                        <input type="radio" name="organization" value="old"/>
+                        <form:checkbox path="categories" value="${category.id}" data-name="${category.name}"/>
                         <span class="checkbox radio"></span>
                         <span class="description">
                   <div class="title">Fundacja “Dla dzieci"</div>

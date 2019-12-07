@@ -74,29 +74,72 @@
     </div>
 
     <div class="form--steps-container">
-        <div class="form--steps-counter">Krok <span>2</span>/4</div>
 
 
-        <form:form method="get" modelAttribute="donation" action="/donation/addStep3">
+        <form:form method="post" modelAttribute="donation">
+            <!-- STEP 5 -->
+            <div data-step="5" class="active">
+                <h3>Podsumowanie Twojej darowizny</h3>
 
-            <!-- STEP 2 -->
-            <div data-step="2" class="active">
-                <h3>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</h3>
+                <div class="summary">
+                    <div class="form-section">
+                        <h4>Oddajesz:</h4>
+                        <ul>
+                            <li>
+                                <span class="icon icon-bag"></span>
+                                <span class="summary--text">
+                                    <c:choose>
+                                        <c:when test="${donation.quantity =='1'}">
+                                            ${donation.quantity} worek zawierający:
+                                        </c:when>
+                                        <c:when test="${donation.quantity >= '5'}">
+                                            ${donation.quantity} worków zawierających:
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${donation.quantity} worki zawierające:
+                                        </c:otherwise>
+                                    </c:choose>
 
-                <div class="form-group form-group--inline">
-                    <label>
-                        Liczba 60l worków:
-                        <form:input path="quantity" type="number" min="1" step="1"/>
-                    </label>
+                                     <c:forEach items="${donation.categoriesDto}" var="category">
+                                         ${category.name}
+                                     </c:forEach>
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="icon icon-hand"></span>
+                                <span class="summary--text"
+                                >${donation.institutionDto.name}</span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="form-section form-section--columns">
+                        <div class="form-section--column">
+                            <h4>Adres odbioru:</h4>
+                            <ul>
+                                <li>${donation.street}</li>
+                                <li>${donation.city}</li>
+                                <li>${donation.zipCode}</li>
+                            </ul>
+                        </div>
+
+                        <div class="form-section--column">
+                            <h4>Termin odbioru:</h4>
+                            <ul>
+                                <li>${donation.pickUpDate}</li>
+                                <li>${donation.pickUpTime}</li>
+                                <li>${donation.pickUpComment}</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group form-group--buttons">
-                        <%--                    <button type="button" class="btn prev-step">Wstecz</button>--%>
-                        <%--                    <button type="button" class="btn next-step">Dalej</button>--%>
-                    <a href="/donation/add" class="btn prev-step">Wstecz</a>
-                    <button type="submit" class="btn next-step">Dalej</button>
+                    <a href="/donation/addStep4" class="btn prev-step">Wstecz</a>
+                    <button type="submit" class="btn">Potwierdzam</button>
                 </div>
-            </div>
         </form:form>
     </div>
 </section>

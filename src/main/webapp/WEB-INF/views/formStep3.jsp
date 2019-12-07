@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="../../resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="${pageContext.request.contextPath}/resources/css/style.css"/>"/>
 </head>
 <body>
 
@@ -28,6 +28,7 @@
     <div class="slogan--item">
         <h1>
             Oddaj rzeczy, których już nie chcesz<br/>
+
             <span class="uppercase">potrzebującym</span>
         </h1>
 
@@ -73,43 +74,38 @@
     </div>
 
     <div class="form--steps-container">
-        <div class="form--steps-counter">Krok <span>1</span>/4</div>
+        <div class="form--steps-counter">Krok <span>3</span>/4</div>
 
 
-        <form:form method="get" modelAttribute="donation" action="/donation/addStep2">
-            <!-- STEP 1: class .active is switching steps -->
-            <div data-step="1" class="active">
-                <h3>Zaznacz co chcesz oddać:</h3>
+        <form:form method="get" modelAttribute="donation" action="/donation/addStep4">
 
-                    <%--                <c:forEach items="${categories}" var="category">--%>
-                    <%--                    <div class="form-group form-group--checkbox">--%>
-                    <%--                        <label>--%>
-                    <%--                            <input type="checkbox"--%>
-                    <%--                                   name="${categories}"--%>
-                    <%--                                   value=${category.id}/>--%>
-                    <%--                            <span class="checkbox"></span>--%>
-                    <%--                            <span class="description">${category.name}</span>--%>
-                    <%--                        </label>--%>
-                    <%--                    </div>--%>
-                    <%--                </c:forEach>--%>
+        <!-- STEP 3 -->
+        <div data-step="3" class="active">
+            <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
-                    <%--                                    <form:checkboxes path="categories" items="${categories}" itemValue="id" itemLabel="name" cssClass="form-group form-group--checkbox checkbox description"/>--%>
+            <c:forEach items="${institutions}" var="institution">
 
-                <c:forEach items="${categories}" var="category">
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <form:checkbox path="categoriesIds" value="${category.id}" data-name="${category.name}"/>
-                            <span class="checkbox"></span>
-                            <span class="description">${category.name}</span>
-                        </label>
-                    </div>
-                </c:forEach>
-                <div class="form-group form-group--buttons">
-                        <%--                                            <button type="button" class="btn next-step">Dalej</button>--%>
-                    <input type="submit" class="btn next-step" value="Dalej">
+                <div class="form-group form-group--checkbox">
+                    <label>
+                        <form:radiobutton path="institutionDtoId" value="${institution.id}"/>
+                        <span class="checkbox radio"></span>
+                        <span class="description">
+                  <div class="title">${institution.name}</div>
+                  <div class="subtitle">
+                          ${institution.description}
+                  </div>
+                </span>
+                    </label>
                 </div>
+            </c:forEach>
+
+            <div class="form-group form-group--buttons">
+                <a href="/donation/addStep2" class="btn prev-step">Wstecz</a>
+                <button type="submit" class="btn next-step">Dalej</button>
             </div>
-        </form:form>
+        </div>
+    </div>
+    </form:form>
     </div>
 </section>
 

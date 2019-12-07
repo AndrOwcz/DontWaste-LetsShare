@@ -2,7 +2,10 @@ package pl.coderslab.charity.donation;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+import pl.coderslab.charity.category.CategoryDto;
 import pl.coderslab.charity.category.CategoryEntity;
+import pl.coderslab.charity.institution.InstitutionDto;
 import pl.coderslab.charity.institution.InstitutionEntity;
 
 import javax.persistence.*;
@@ -18,9 +21,9 @@ public class DonationDto {
 
     private int quantity;
 
-    private List<CategoryEntity> categories;
+    private List<CategoryDto> categoriesDto;
 
-    private InstitutionEntity institutionEntity;
+    private InstitutionDto institutionDto;
 
     private String street;
 
@@ -28,9 +31,14 @@ public class DonationDto {
 
     private String zipCode;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
 
     private LocalTime pickUpTime;
 
     private String pickUpComment;
+
+    private List<Long> categoriesIds;
+
+    private Long institutionDtoId;
 }

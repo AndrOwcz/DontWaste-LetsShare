@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="../../resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="${pageContext.request.contextPath}/resources/css/style.css"/>"/>
 </head>
 <body>
 
@@ -28,6 +28,7 @@
     <div class="slogan--item">
         <h1>
             Oddaj rzeczy, których już nie chcesz<br/>
+
             <span class="uppercase">potrzebującym</span>
         </h1>
 
@@ -73,42 +74,66 @@
     </div>
 
     <div class="form--steps-container">
-        <div class="form--steps-counter">Krok <span>1</span>/4</div>
+        <div class="form--steps-counter">Krok <span>4</span>/4</div>
 
 
-        <form:form method="get" modelAttribute="donation" action="/donation/addStep2">
-            <!-- STEP 1: class .active is switching steps -->
-            <div data-step="1" class="active">
-                <h3>Zaznacz co chcesz oddać:</h3>
+        <form:form method="get" modelAttribute="donation" action="/donation/addConfirm">
 
-                    <%--                <c:forEach items="${categories}" var="category">--%>
-                    <%--                    <div class="form-group form-group--checkbox">--%>
-                    <%--                        <label>--%>
-                    <%--                            <input type="checkbox"--%>
-                    <%--                                   name="${categories}"--%>
-                    <%--                                   value=${category.id}/>--%>
-                    <%--                            <span class="checkbox"></span>--%>
-                    <%--                            <span class="description">${category.name}</span>--%>
-                    <%--                        </label>--%>
-                    <%--                    </div>--%>
-                    <%--                </c:forEach>--%>
+            <!-- STEP 5 -->
+            <div data-step="4" class="active">
+                <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
 
-                    <%--                                    <form:checkboxes path="categories" items="${categories}" itemValue="id" itemLabel="name" cssClass="form-group form-group--checkbox checkbox description"/>--%>
+                <div class="form-section form-section--columns">
+                    <div class="form-section--column">
+                        <h4>Adres odbioru</h4>
+                        <div class="form-group form-group--inline">
+                            <label> Ulica
+                                <form:input path="street" type="text"/>
+                            </label>
+                        </div>
 
-                <c:forEach items="${categories}" var="category">
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <form:checkbox path="categoriesIds" value="${category.id}" data-name="${category.name}"/>
-                            <span class="checkbox"></span>
-                            <span class="description">${category.name}</span>
-                        </label>
+                        <div class="form-group form-group--inline">
+                            <label> Miasto
+                                <form:input path="city" type="text"/>
+                            </label>
+                        </div>
+
+                        <div class="form-group form-group--inline">
+                            <label>
+                                Kod pocztowy
+                                <form:input path="zipCode" type="text"/>
+                            </label>
+                        </div>
                     </div>
-                </c:forEach>
+
+                    <div class="form-section--column">
+                        <h4>Termin odbioru</h4>
+                        <div class="form-group form-group--inline">
+                            <label> Data
+                                <form:input path="pickUpDate" type="date"/>
+                            </label>
+                        </div>
+
+                        <div class="form-group form-group--inline">
+                            <label> Godzina
+                                <form:input path="pickUpTime" type="time"/>
+                            </label>
+                        </div>
+
+                        <div class="form-group form-group--inline">
+                            <label>
+                                Uwagi dla kuriera
+                                <form:textarea path="pickUpComment" type="text"/>
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group form-group--buttons">
-                        <%--                                            <button type="button" class="btn next-step">Dalej</button>--%>
-                    <input type="submit" class="btn next-step" value="Dalej">
+                    <a href="/donation/addStep3" class="btn prev-step">Wstecz</a>
+                    <button type="submit" class="btn next-step">Dalej</button>
                 </div>
             </div>
+
         </form:form>
     </div>
 </section>
